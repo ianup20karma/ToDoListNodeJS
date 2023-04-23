@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+    <%- include('header') %>
+    <body>
+        <div class="box" id="heading">
+            <h1><%= listName %></h1>
+        </div>
+
+        <div class="box">
+            <form action="/delete" method="post">
+                <% listItems.forEach(item => { %>
+                    <div class="item">
+                        <input type="checkbox" name="checkbox" value="<%= item._id %>" onchange="this.form.submit()">
+                        <p><%= item.name %></p>
+                    </div>
+                <% }) %>
+                <input type="hidden" name="listName" value="<%= listName %>">
+            </form>
+
+            <form class="item" action="/" method="post">
+                <input type="text" name="newItem" placeholder="New Item" autocomplete="false">
+                <button type="submit" name="list" value="<%= listName %>">+</button>
+            </form>
+        </div>
+
+        <div class="tip">
+            Create a new List by adding '/something' at the end of the URL!
+        </div>
+
+        <div class="copyright">
+            © Anup Vishwakarma
+        </div>
+
+        <div class="db">
+            <img src="images/mongodb.png"></img>
+        </div>
+    </body>
+</html>
